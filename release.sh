@@ -25,18 +25,18 @@ case $VERSION in
 *)
     echo RELEASE
     # github tag打ち
-    echo git tag -a $VERSION
+    git tag -a $VERSION
 
     # bintrayにpush
-    echo jfrog bt u "testfile" tkhr-sait/test/$VERSION
+    jfrog bt u "testfile" tkhr-sait/test/$VERSION
 
     # マイナーバージョン上げる
     NEW_VER=$(increment $VERSION)
     # githubにコミット
-    echo $NEW_VER"-SNAPSHOT"
-    echo git add src/VERSION
-    echo git commit -m "ci"
-    echo git push
+    echo $NEW_VER"-SNAPSHOT" > src/VERSION
+    git add src/VERSION
+    git commit -m "ci"
+    git push
     exit 0
     ;;
 esac
