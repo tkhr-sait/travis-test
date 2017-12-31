@@ -4,4 +4,5 @@ rvm:
 install:
   - curl -C - -fL https://getcli.jfrog.io | sh
 script:
+  - ls -al
   - ./release.sh
