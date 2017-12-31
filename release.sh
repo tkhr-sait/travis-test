@@ -25,7 +25,7 @@ case $VERSION in
 *)
     echo RELEASE
     # github tag打ち
-    git tag -a $VERSION
+    git tag -a $VERSION -m "ci"
 
     # bintrayにpush
     echo jfrog
