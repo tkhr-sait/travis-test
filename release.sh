@@ -28,7 +28,9 @@ case $VERSION in
     git tag -a $VERSION
 
     # bintrayにpush
-    jfrog bt u "testfile" tkhr-sait/test/$VERSION
+    echo jfrog
+#    chmod +x jfrog
+#    jfrog bt u "testfile" tkhr-sait/test/test/$VERSION --key 5043645c5c414f9963ed3bbaee7fd3e20db5de6b
 
     # マイナーバージョン上げる
     NEW_VER=$(increment $VERSION)
