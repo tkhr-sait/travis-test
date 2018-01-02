@@ -71,7 +71,7 @@ case $VERSION in
     echo $NEW_VER"-SNAPSHOT" > src/VERSION
     git add src/VERSION
     git commit -m "ci"
-    git push
+    git push origin master
     exit 0
     ;;
 esac
