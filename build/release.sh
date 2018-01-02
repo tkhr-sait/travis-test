@@ -70,7 +70,8 @@ case $VERSION in
     # githubにコミット
     echo $NEW_VER"-SNAPSHOT" > src/VERSION
     git add src/VERSION
-    git commit -m "ci"
+    git commit -m "commit from ci"
+    git remote add origin git@github.com:tkhr-sait/travis-test.git
     git push origin master
     exit 0
     ;;
