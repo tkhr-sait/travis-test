@@ -39,7 +39,7 @@ case $VERSION in
     echo RELEASE
     git config --global user.name  "${GH_USER}"
     git config --global user.email "${GH_USER}@users.noreply.github.com"
-    git config --global credential.helper "store --file=$HOME/.config/git-credential"
+    git config --global credential.helper "store --file=~/.config/git-credential"
 
     mkdir -p ~/.config
     echo "https://${GH_APIKEY}:@github.com" > ~/.config/git-credential
@@ -71,7 +71,6 @@ case $VERSION in
     echo $NEW_VER"-SNAPSHOT" > src/VERSION
     git add src/VERSION
     git commit -m "commit from ci"
-    git remote add origin git@github.com:tkhr-sait/travis-test.git
     git push origin master
     exit 0
     ;;
