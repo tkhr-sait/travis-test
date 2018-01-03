@@ -39,13 +39,14 @@ case $VERSION in
     echo RELEASE
     git config --global user.name  "${GH_USER}"
     git config --global user.email "${GH_USER}@users.noreply.github.com"
-    git config --global credential.helper "store --file=~/.config/git-credential"
+    git config --global credential.helper "store --file=/home/travis/.config/git-credential"
 
-    mkdir -p ~/.config
-    echo "https://${GH_APIKEY}:@github.com" > ~/.config/git-credential
+    mkdir -p /home/travis/.config
+    echo "https://${GH_APIKEY}:@github.com" > /home/travis/.config/git-credential
+    git config -l
 
     # github tag打ち
-    git tag -a $VERSION -m "ci"
+    git tag -a $VERSION -m "tagging from ci"
 
     # bintrayにpush
     echo bintray push
@@ -68,10 +69,10 @@ case $VERSION in
     # マイナーバージョン上げる
     NEW_VER=$(incrementVersion $VERSION)
     # githubにコミット
-    echo $NEW_VER"-SNAPSHOT" > src/VERSION
-    git add src/VERSION
+    echo $NEW_VER"-SNAPSHOT" > $BASE/src/VERSION
+    git add $BASE/src/VERSION
     git commit -m "commit from ci"
-    git push origin master
+    git push -u origin master
     exit 0
     ;;
 esac
