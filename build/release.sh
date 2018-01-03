@@ -26,7 +26,7 @@ cur_filename=$BASE/dist/testfile-$VERSION.txt
 mkdir -p $BASE/dist
 echo $VERSION > $cur_filename
 
-if [ "$RUN_IN_TRAVIS" == "" ]; then
+if [ "$RUN_IN_TRAVIS" = "" ]; then
   exit 0
 fi
 
@@ -46,7 +46,6 @@ case $VERSION in
     git config -l
 
     # github tag打ち
-    git tag -a $VERSION -m "tagging from ci"
 
     # bintrayにpush
     echo bintray push
@@ -66,13 +65,17 @@ case $VERSION in
       --user ${BINTRAY_USER}:${BINTRAY_APIKEY} \
       "https://api.bintray.com/file_metadata/${BINTRAY_ORG}/${BINTRAY_REPO}/${cur_filename}"
 
+    git tag -a $VERSION -m "tagging from ci"
+    git commit -m "commit from ci"
     # マイナーバージョン上げる
     NEW_VER=$(incrementVersion $VERSION)
     # githubにコミット
     echo $NEW_VER"-SNAPSHOT" > $BASE/src/VERSION
+
     git add $BASE/src/VERSION
     git commit -m "commit from ci"
     git push -u origin master
+    date
     exit 0
     ;;
 esac
