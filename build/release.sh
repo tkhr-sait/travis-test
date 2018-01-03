@@ -65,17 +65,23 @@ case $VERSION in
       --user ${BINTRAY_USER}:${BINTRAY_APIKEY} \
       "https://api.bintray.com/file_metadata/${BINTRAY_ORG}/${BINTRAY_REPO}/${cur_filename}"
 
+    # タグ打ち
     git tag -a $VERSION -m "tagging from ci"
-    git commit -m "commit from ci"
+    git push origin $VERSION
+
     # マイナーバージョン上げる
     NEW_VER=$(incrementVersion $VERSION)
-    # githubにコミット
     echo $NEW_VER"-SNAPSHOT" > $BASE/src/VERSION
 
+    # githubにコミット
     git add $BASE/src/VERSION
     git commit -m "commit from ci"
     git push -u origin master
     date
+
+    git tag
+
+
     exit 0
     ;;
 esac
