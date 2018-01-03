@@ -74,13 +74,12 @@ case $VERSION in
     echo $NEW_VER"-SNAPSHOT" > $BASE/src/VERSION
 
     # githubにコミット
+    git branch -a
+
+    git checkout master
     git add $BASE/src/VERSION
     git commit -m "commit from ci"
-    git push -u origin master
-    date
-
-    git tag
-
+    git push origin master
 
     exit 0
     ;;
