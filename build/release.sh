@@ -78,7 +78,7 @@ case $VERSION in
 
     git checkout master
     git add $BASE/src/VERSION
-    git commit -m "commit from ci"
+    git commit -m "commit from ci[skip ci]"
     git push origin master
 
     exit 0
