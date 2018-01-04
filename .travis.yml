@@ -3,12 +3,13 @@ rvm:
   - 2.3.4
 
 before_cache:
-  - echo "before_cache"
+  - ls -al $DIR_CACHE
+  - echo $DIR_CACHE
 
 before_install:
   - 'REDPEN_URL="https://github.com/redpen-cc/redpen/releases/download"'
   - 'REDPEN_VERSION="1.10.1"'
-  - 'DIR_CACHE="${HOME}/custom_cache"'
+  - 'DIR_CACHE="${HOME}/custom_cache/"'
 
 install:
   - 'curl --request GET --location --continue-at - --create-dirs --output "${DIR_CACHE}/redpen-${REDPEN_VERSION}.tar.gz" "${REDPEN_URL}/redpen-${REDPEN_VERSION}/redpen-${REDPEN_VERSION}.tar.gz"'
@@ -23,6 +24,7 @@ script:
 
 cache:
   directories:
+    - ${HOME}/.cache
     - ${DIR_CACHE}
 
 branches:
