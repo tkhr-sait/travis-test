@@ -3,3 +3,5 @@ rvm:
   - 2.3.4
 script:
   - ./build/release.sh
+on:
+  - tags: false
