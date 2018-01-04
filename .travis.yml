@@ -2,6 +2,9 @@ language: ruby
 rvm:
   - 2.3.4
 
+before_cache:
+  - echo "before_cache"
+
 before_install:
   - 'REDPEN_URL="https://github.com/redpen-cc/redpen/releases/download"'
   - 'REDPEN_VERSION="1.10.1"'
@@ -17,6 +20,10 @@ install:
 
 script:
   - ./build/release.sh
+
+cache:
+  directories:
+    - ${DIR_CACHE}
 
 branches:
   except:
