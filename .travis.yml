@@ -30,7 +30,7 @@ script:
   - (cd sample_screenTestProj && ./build.sh && ./run-cuke.sh && cd ..) 
   - sudo docker-compose -f sample_screenTestProj/docker-compose.yml down
 
-after_script:
+after_success:
   - ./build/release.sh
 
 branches:
