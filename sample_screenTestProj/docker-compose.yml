@@ -1,0 +1,47 @@
+version: '3'
+services:
+  hub:
+    image: selenium/hub
+    restart: always
+    ports:
+      - "4444:4444"
+    networks:
+      - test_bridge
+
+  node-chrome:
+    build:
+      context: "."
+      dockerfile: "runtime_env/Dockerfile.node-chrome-ja" # 日本語フォントカスタマイズ
+    restart: always
+    depends_on:
+      - hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+    volumes:
+      - /dev/shm:/dev/shm # Mitigates the Chromium issue described at https://code.google.com/p/chromium/issues/detail?id=519952
+    networks:
+      - test_bridge
+
+  node-firefox:
+    build:
+      context: "."
+      dockerfile: "runtime_env/Dockerfile.node-firefox-ja" # 日本語フォントカスタマイズ
+    restart: always
+    depends_on:
+      - hub
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+    networks:
+      - test_bridge
+
+  in-house-swagger:
+    image: tkhr0sait/in-house-swagger:0.5.0-SNAPSHOT
+    ports:
+      - "9700:9700"
+      - "9701:9701"
+    networks:
+      - test_bridge
+networks:
+  test_bridge: # 他のコンテナからは、{ディレクトリ名}_test_bridge でアクセスできる。

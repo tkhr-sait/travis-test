@@ -2,30 +2,30 @@ language: ruby
 rvm:
   - 2.3.4
 
-before_cache:
-  - ls -al $DIR_CACHE
-  - echo $DIR_CACHE
+sudo: required
+services:
+  - docker
+
+env:
+  - DOCKER_COMPOSE_VERSION=1.4.2
+
+addons:
+  apt:
+    packages:
+      - docker-ce
 
 before_install:
-  - 'REDPEN_URL="https://github.com/redpen-cc/redpen/releases/download"'
-  - 'REDPEN_VERSION="1.10.1"'
-  - 'DIR_CACHE="${HOME}/custom_cache/"'
-
-install:
-  - 'curl --request GET --location --continue-at - --create-dirs --output "${DIR_CACHE}/redpen-${REDPEN_VERSION}.tar.gz" "${REDPEN_URL}/redpen-${REDPEN_VERSION}/redpen-${REDPEN_VERSION}.tar.gz"'
-  - 'cd ${DIR_CACHE} && tar xvf "./redpen-${REDPEN_VERSION}.tar.gz" && cd -'
-  - 'export PATH="$PATH:${DIR_CACHE}/redpen-distribution-${REDPEN_VERSION}/bin"'
-  - 'gem install asciidoctor'
-  - 'pip install --user pyaml'
-  - 'pip install --user docopt'
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
 
 script:
+  - sudo docker-compose build
+  - sudo docker-compose up -d
+  - (cd sample_screenTestProj && ./build.sh && ./run-cuke.sh && cd ..) 
+  - sudo docker-compose down
   - ./build/release.sh
-
-cache:
-  directories:
-    - ${HOME}/.cache
-    - ${DIR_CACHE}
 
 branches:
   except:
