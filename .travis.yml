@@ -30,7 +30,7 @@ script:
   - sudo docker-compose -f sample_screenTestProj/docker-compose.yml up -d
   - (cd sample_screenTestProj && ./build.sh && ./run-cuke.sh && cd ..) 
   - sudo docker-compose -f sample_screenTestProj/docker-compose.yml down
-  - img2txt -W 80 -f ansi sample_screenTestProj/build/reports/tests/scenario/test/SwaggerEditorPage_10_editor.png
+  - img2txt -W 60 -f ansi sample_screenTestProj/build/reports/tests/scenario/test/SwaggerEditorPage_10_editor.png
 
 after_success:
   - ./build/release.sh
