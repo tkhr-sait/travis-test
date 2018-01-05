@@ -12,6 +12,7 @@ env:
 cache:
   directories:
     - $HOME/.m2
+    - node_modules
 
 addons:
   apt:
@@ -20,6 +21,7 @@ addons:
       - caca-utils # img2txt
 
 before_install:
+  - npm install -g conventional-changelog-cli
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
@@ -33,6 +35,8 @@ script:
   - find sample_screenTestProj/build/reports/ -name '*.png'|sort|xargs -I{} sh -c 'echo;echo {}; img2txt -W 60 -f ansi "{}"'
 
 after_success:
+  - conventional-changelog-cli -p angular -i CHANGELOG.md -s -r 0
+  - cat CHANGELOG.md
   - ./build/release.sh
 
 branches:
