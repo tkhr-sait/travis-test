@@ -78,6 +78,7 @@ case $VERSION in
 
     git checkout master
     git add $BASE/src/VERSION
+    git add $BASE/src/CHANGELOG.md
     git commit -m "commit from ci[skip ci]"
     git push origin master
 
