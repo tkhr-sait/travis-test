@@ -22,7 +22,8 @@ addons:
 
 before_install:
   - npm install -g conventional-changelog-cli
-  - /home/travis/.nvm/versions/node/v8.9.1/bin/conventional-changelog-cli -p angular -i CHANGELOG.md -s -r 0
+  - ls -al 
+  - /home/travis/.nvm/versions/node/v8.9.1/bin/conventional-changelog -p angular -i CHANGELOG.md -s -r 0
   - cat CHANGELOG.md
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
