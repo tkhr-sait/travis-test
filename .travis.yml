@@ -22,16 +22,14 @@ addons:
 
 before_install:
   - npm install -g conventional-changelog-cli
-  - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
 
 script:
-  - sudo docker-compose -f sample_screenTestProj/docker-compose.yml build
-  - sudo docker-compose -f sample_screenTestProj/docker-compose.yml up -d
+  - ./docker-compose -f sample_screenTestProj/docker-compose.yml build
+  - ./docker-compose -f sample_screenTestProj/docker-compose.yml up -d
   - (cd sample_screenTestProj && ./build.sh && ./run-cuke.sh && cd ..) 
-  - sudo docker-compose -f sample_screenTestProj/docker-compose.yml down
+  - ./docker-compose -f sample_screenTestProj/docker-compose.yml down
   - find sample_screenTestProj/build/reports/ -name '*.png'|sort|xargs -I{} sh -c 'echo;echo {}; img2txt -W 60 -f ansi "{}"'
 
 after_success:
