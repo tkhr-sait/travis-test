@@ -35,7 +35,8 @@ script:
   - find sample_screenTestProj/build/reports/ -name '*.png'|sort|xargs -I{} sh -c 'echo;echo {}; img2txt -W 60 -f ansi "{}"'
 
 after_success:
-  - conventional-changelog -p angular -i CHANGELOG.md -s -r 0
+  - conventional-changelog -r 5 # すべてのcommit表示
+  - conventional-changelog -p angular -i CHANGELOG.md -s -r 5 # angularルールでの直近５リリースのchangelog
   - cat CHANGELOG.md
   - ./build/release.sh
 
