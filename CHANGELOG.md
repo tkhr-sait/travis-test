@@ -2,6 +2,16 @@
 #  (2018-01-06)
 
 
+### Bug Fixes
+
+* A bug fix ([99825c5](https://github.com/tkhr-sait/travis-test/commit/99825c5))
+
+
+
+<a name="0.24.0"></a>
+# [0.24.0](https://github.com/tkhr-sait/travis-test/compare/0.23.0...0.24.0) (2018-01-06)
+
+
 ### Features
 
 * A New Feature Changelog Test ([84f9796](https://github.com/tkhr-sait/travis-test/commit/84f9796))
