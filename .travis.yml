@@ -13,6 +13,7 @@ cache:
   directories:
     - $HOME/.m2
     - $HOME/node_modules
+    - $HOME/sample_screenTestProj/target
 
 addons:
   apt:
@@ -42,3 +43,4 @@ after_success:
 branches:
   except:
     - /^\d+\.\d+(\.\d+)?(-\S*)?$/
+
