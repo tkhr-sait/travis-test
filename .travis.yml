@@ -2,8 +2,8 @@ language: ruby
 rvm:
   - 2.3.4
 
-services:
-  - docker
+#services:
+#  - docker
 
 env:
   - DOCKER_COMPOSE_VERSION=1.17.0
