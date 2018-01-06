@@ -1,5 +1,16 @@
-<a name="">Travis Test</a>
+<a name=""></a>
 #  (2018-01-06)
+
+
+### Features
+
+* **cache:** cache settings brush up ([9292546](https://github.com/tkhr-sait/travis-test/commit/9292546))
+* **changelog:** update changelog test ([af5fef9](https://github.com/tkhr-sait/travis-test/commit/af5fef9))
+
+
+
+<a name="0.25.0"></a>
+# [0.25.0](https://github.com/tkhr-sait/travis-test/compare/0.24.0...0.25.0) (2018-01-06)
 
 
 ### Bug Fixes
@@ -78,13 +89,8 @@
 
 
 
-<a name="0.10.0"></a>
-# [0.10.0](https://github.com/tkhr-sait/travis-test/compare/0.9.0...0.10.0) (2018-01-03)
-
-
-
-<a name="0.9.0"></a>
-# 0.9.0 (2018-01-03)
+<a name="0.11.0"></a>
+# 0.11.0 (2018-01-04)
 
 
 
