@@ -4,6 +4,7 @@ rvm:
 
 #services:
 #  - docker
+sudo: false
 
 env:
   - DOCKER_COMPOSE_VERSION=1.17.0
