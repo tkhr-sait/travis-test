@@ -2,9 +2,19 @@ language: ruby
 rvm:
   - 2.3.4
 
-#services:
-#  - docker
 sudo: false
+
+notifications:
+  email:
+    recipients:
+      - scenario-test-framework@mail.asana.com
+    # options: [always|never|change]
+    on_start: never
+    on_success: change
+    on_failure: always
+    on_cancel: always
+    on_error: always
+
 
 env:
   - DOCKER_COMPOSE_VERSION=1.17.0
