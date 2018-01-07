@@ -5,18 +5,6 @@ rvm:
 # dockerを使用すると、sudo falseにしてもdockerイメージでなく、virtualmacineで動作するぽい
 sudo: false
 
-notifications:
-  email:
-    recipients:
-      - tkhr.sait@gmail.com
-    # options: [always|never|change]
-    on_start: always
-    on_success: always
-    on_failure: always
-    on_cancel: always
-    on_error: always
-
-
 env:
   - DOCKER_COMPOSE_VERSION=1.17.0
 
