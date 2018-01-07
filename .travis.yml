@@ -2,6 +2,7 @@ language: ruby
 rvm:
   - 2.3.4
 
+# dockerを使用すると、sudo falseにしてもdockerイメージでなく、virtualmacineで動作するぽい
 sudo: false
 
 notifications:
@@ -10,7 +11,7 @@ notifications:
       - scenario-test-framework@mail.asana.com
     # options: [always|never|change]
     on_start: never
-    on_success: change
+    on_success: always
     on_failure: always
     on_cancel: always
     on_error: always
