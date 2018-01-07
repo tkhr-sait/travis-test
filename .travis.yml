@@ -8,9 +8,9 @@ sudo: false
 notifications:
   email:
     recipients:
-      - scenario-test-framework@mail.asana.com
+      - tkhr.sait@gmail.com
     # options: [always|never|change]
-    on_start: never
+    on_start: always
     on_success: always
     on_failure: always
     on_cancel: always
